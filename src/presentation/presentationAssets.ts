@@ -4,6 +4,11 @@
  * Do not reference raw paths in slide components — use `assetId` with `PaperScreenshotFrame` or templates.
  */
 
+function publicAssetUrl(pathFromPublicRoot: string) {
+  // Ensures URLs respect Vite `base` (e.g. GitHub Pages repo subpath).
+  return new URL(pathFromPublicRoot, import.meta.env.BASE_URL).toString();
+}
+
 export type PresentationAssetId =
   | "resultsMainChart"
   | "paperFigureHook"
@@ -68,7 +73,7 @@ export const PRESENTATION_ASSETS: Record<
   resultsMainChart: {
     id: "resultsMainChart",
     label: "Main results chart",
-    src: "/assets/results-main-chart.png",
+    src: publicAssetUrl("assets/results-main-chart.png"),
     alt: "Main quantitative results figure from the paper",
     aspectPreset: "16:10",
     fit: "contain",
@@ -80,7 +85,7 @@ export const PRESENTATION_ASSETS: Record<
   paperFigureHook: {
     id: "paperFigureHook",
     label: "Hook / intuition figure",
-    src: "/assets/paper-figure-hook.png",
+    src: publicAssetUrl("assets/paper-figure-hook.png"),
     alt: "Figure from the paper illustrating the hook",
     aspectPreset: "16:9",
     fit: "contain",
@@ -92,7 +97,7 @@ export const PRESENTATION_ASSETS: Record<
   paperFigureStudyDesign: {
     id: "paperFigureStudyDesign",
     label: "Study design figure",
-    src: "/assets/paper-figure-study-design.png",
+    src: publicAssetUrl("assets/paper-figure-study-design.png"),
     alt: "Study procedure and design figure from the paper",
     aspectPreset: "16:9",
     fit: "contain",
@@ -104,7 +109,7 @@ export const PRESENTATION_ASSETS: Record<
   paperFigureSourceComparison: {
     id: "paperFigureSourceComparison",
     label: "Source comparison figure",
-    src: "/assets/paper-figure-source-comparison.png",
+    src: publicAssetUrl("assets/paper-figure-source-comparison.png"),
     alt: "Figure comparing prediction sources across conditions",
     aspectPreset: "16:9",
     fit: "contain",
@@ -116,7 +121,7 @@ export const PRESENTATION_ASSETS: Record<
   paperFigureBackup: {
     id: "paperFigureBackup",
     label: "Backup / alternate crop",
-    src: "/assets/paper-figure-backup.png",
+    src: publicAssetUrl("assets/paper-figure-backup.png"),
     alt: "Supplementary or alternate figure from the paper",
     aspectPreset: "16:10",
     fit: "contain",

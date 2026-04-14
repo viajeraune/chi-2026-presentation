@@ -14,7 +14,7 @@ Suggested filenames (match default `src` entries — or change `src` in the regi
 Workflow:
 1. Export or crop your figure as PNG (or update registry `src` to `.jpg` / `.webp`).
 2. Place the file under `public/assets/`.
-3. Ensure `src` in `presentationAssets.ts` matches `/assets/your-file.png`.
+3. Ensure `src` in `presentationAssets.ts` points to `assets/your-file.png` (it will be resolved against Vite `base`).
 4. Reload the app — slides reference assets by **id**, not by path in slide code.
 
 Optional dev helper: in `.env.local` add
