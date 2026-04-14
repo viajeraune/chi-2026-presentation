@@ -6,7 +6,10 @@
 
 function publicAssetUrl(pathFromPublicRoot: string) {
   // Ensures URLs respect Vite `base` (e.g. GitHub Pages repo subpath).
-  return new URL(pathFromPublicRoot, import.meta.env.BASE_URL).toString();
+  // `import.meta.env.BASE_URL` is a pathname (not an absolute URL), so avoid `new URL()`.
+  const base = import.meta.env.BASE_URL; // ends with `/`
+  const rel = pathFromPublicRoot.replace(/^\/+/, "");
+  return `${base}${rel}`;
 }
 
 export type PresentationAssetId =
